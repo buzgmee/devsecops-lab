@@ -1,0 +1,9 @@
+name: Mój pierwszy pipeline
+
+on: [push]          # trigger: odpal przy każdym push
+
+jobs:
+  powitanie:                    # nazwa jobu
+    runs-on: ubuntu-latest      # maszyna, która to wykona
+    steps:
+      - run: echo "Hello, DevSecOps!"   # krok
