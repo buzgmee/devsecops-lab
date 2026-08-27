@@ -4,7 +4,11 @@ jobs:
   sca:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # pobierz kod
-      - uses: snyk/actions/node@master # uruchom Snyk
+      - uses: actions/checkout@v4        # pobierz kod
+      - uses: actions/setup-node@v4      # przygotuj Node.js
+        with:
+          node-version: '20'
+      - run: npm install                 # zainstaluj zależności (tworzy node_modules)
+      - uses: snyk/actions/node@master   # uruchom Snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
