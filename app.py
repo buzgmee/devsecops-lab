@@ -1,4 +1,6 @@
 import sqlite3
+import subprocess
+import re
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -17,10 +19,13 @@ def get_user():
 
 @app.route("/run")
 def run_cmd():
-    import os
-    cmd = request.args.get("cmd")             # dane od użytkownika
-    # PODATNE: Command injection — dane usera trafiają do os.system
-    os.system("ping " + cmd)
+    cmd = request.args.get("cmd", "").strip()  # dane od użytkownika
+    # Walidacja: dozwolone tylko bezpieczne znaki hosta/IP
+    if not cmd or not re.fullmatch(r"[A-Za-z0-9.-]{1,255}", cmd):
+        return "invalid cmd", 400
+
+    # Bezpiecznie: bez powłoki, argumenty jako lista
+    subprocess.run(["ping", "-c", "1", cmd], check=False, capture_output=True, text=True)
     return "done"
 
 if __name__ == "__main__":
