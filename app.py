@@ -24,7 +24,7 @@ def run_cmd():
     if not cmd or not re.fullmatch(r"[A-Za-z0-9.-]{1,255}", cmd):
         return "invalid cmd", 400
 
-    # Bezpiecznie: bez powłoki, argumenty jako lista
+    app.run(debug=False)                       # debug disabled for safety
     subprocess.run(["ping", "-c", "1", cmd], check=False, capture_output=True, text=True)
     return "done"
 
