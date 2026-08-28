@@ -9,9 +9,9 @@ def get_user():
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
 
-    # PODATNE: SQL injection — user_id wklejony wprost do zapytania
-    query = "SELECT * FROM users WHERE id = '" + user_id + "'"
-    cursor.execute(query)
+    # BEZPIECZNE: zapytanie parametryzowane — user_id przekazany jako parametr
+    query = "SELECT * FROM users WHERE id = ?"
+    cursor.execute(query, (user_id,))
 
     return str(cursor.fetchall())
 
