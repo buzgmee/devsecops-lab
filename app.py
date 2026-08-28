@@ -29,4 +29,4 @@ def run_cmd():
     return "done"
 
 if __name__ == "__main__":
-    app.run(debug=True)                        # PODATNE: debug=True
+    app.run(debug=False)                        # PODATNE: debug=True
