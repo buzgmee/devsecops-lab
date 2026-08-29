@@ -1,4 +1,6 @@
 name: SCA - skan zależności
+permissions:
+  contents: read
 on: [pull_request]
 jobs:
   sca:

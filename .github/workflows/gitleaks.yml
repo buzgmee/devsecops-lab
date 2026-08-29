@@ -1,4 +1,6 @@
 name: Secrets - Gitleaks
+permissions:
+  contents: read
 on: [push, pull_request]        # skanuj przy każdym pushu i PR
 jobs:
   gitleaks:

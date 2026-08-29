@@ -1,4 +1,6 @@
 name: Mój pierwszy pipeline
+permissions:
+  contents: read
 
 on: [push]          # trigger: odpal przy każdym push
 

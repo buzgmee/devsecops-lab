@@ -1,4 +1,6 @@
 name: SAST - CodeQL
+permissions:
+  contents: read
 on: [pull_request]
 jobs:
   analyze:
