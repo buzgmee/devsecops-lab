@@ -1,0 +1,12 @@
+name: IaC - Checkov
+on: [pull_request]
+jobs:
+  checkov:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .          # skanuj całe repo
